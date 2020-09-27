@@ -126,12 +126,4 @@ abstract class CustomBaseGame extends BaseGame
   }
 
   bool get isGamePaused => _isPause;
-
-  /// This is a hook that comes from the RenderBox to allow recording of render times and statistics.
-  @override
-  void recordDt(double dt) {
-    if (recordFps()) {
-      _dts.add(dt);
-    }
-  }
 }
