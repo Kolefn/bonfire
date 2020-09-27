@@ -4,7 +4,7 @@ import 'package:flame/game/embedded_game_widget.dart';
 import 'package:flutter/widgets.dart';
 
 class CustomWidgetBuilder {
-  Widget build(Game game) {
+  Widget build(Game game, Widget child) {
     return Listener(
       onPointerDown: game is PointerDetector
           ? (PointerDownEvent d) => (game as PointerDetector).onPointerDown(d)
@@ -19,7 +19,7 @@ class CustomWidgetBuilder {
           ? (PointerCancelEvent d) =>
               (game as PointerDetector).onPointerCancel(d)
           : null,
-      child: game.widget,
+      child: child,
     );
   }
 }

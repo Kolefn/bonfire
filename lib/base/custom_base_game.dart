@@ -130,5 +130,5 @@ abstract class CustomBaseGame extends BaseGame
   bool get isGamePaused => _isPause;
 
   @override
-  Widget get widget => widgetBuilder.build(this);
+  Widget get widget => widgetBuilder.build(this, super.widget);
 }
