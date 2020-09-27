@@ -19,6 +19,7 @@ import 'package:ordered_set/ordered_set.dart';
 abstract class CustomBaseGame extends BaseGame
     with HasWidgetsOverlay, PointerDetector {
   bool _isPause = false;
+  final CustomWidgetBuilder widgetBuilder = CustomWidgetBuilder();
   Camera gameCamera = Camera();
 
   Iterable<GameComponent> get _gesturesComponents => components
@@ -127,4 +128,7 @@ abstract class CustomBaseGame extends BaseGame
   }
 
   bool get isGamePaused => _isPause;
+
+  @override
+  Widget get widget => widgetBuilder.build(this);
 }
