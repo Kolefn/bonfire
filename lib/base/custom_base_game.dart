@@ -114,6 +114,7 @@ abstract class CustomBaseGame extends BaseGame
   @override
   void update(double t) {
     if (_isPause) return;
+    gameCamera.update();
     super.update(t);
   }
 
