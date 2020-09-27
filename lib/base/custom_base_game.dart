@@ -9,6 +9,7 @@ import 'package:bonfire/util/mixins/pointer_detector_mixin.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/composed_component.dart';
 import 'package:flame/components/mixins/has_game_ref.dart';
+import 'package:flame/game/base_game.dart';
 import 'package:flame/game/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
