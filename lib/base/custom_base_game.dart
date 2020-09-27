@@ -15,7 +15,7 @@ import 'package:flutter/widgets.dart';
 import 'package:ordered_set/comparing.dart';
 import 'package:ordered_set/ordered_set.dart';
 
-abstract class BaseGamePointerDetector extends BaseGame
+abstract class CustomBaseGame extends BaseGame
     with HasWidgetsOverlay, PointerDetector {
   bool _isPause = false;
   Camera gameCamera = Camera();
