@@ -1,4 +1,3 @@
-import 'package:bonfire/base/base_game_point_detector.dart';
 import 'package:bonfire/base/game_component.dart';
 import 'package:bonfire/bonfire.dart';
 import 'package:bonfire/decoration/decoration.dart';
@@ -16,14 +15,18 @@ import 'package:bonfire/util/game_controller.dart';
 import 'package:bonfire/util/interval_tick.dart';
 import 'package:bonfire/util/map_explorer.dart';
 import 'package:bonfire/util/mixins/attackable.dart';
+import 'package:bonfire/util/mixins/pointer_detector_mixin.dart';
 import 'package:bonfire/util/value_generator_component.dart';
 import 'package:flame/components/component.dart';
+import 'package:flame/game/base_game.dart';
+import 'package:flame/game/game.dart';
 import 'package:flame/keyboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class RPGGame extends BaseGamePointerDetector with KeyboardEvents {
+class RPGGame extends BaseGame
+    with KeyboardEvents, PointerDetector, HasWidgetsOverlay {
   final BuildContext context;
   final Player player;
   final GameInterface interface;
