@@ -115,11 +115,11 @@ class FlyingAttackAngleObject extends AnimatedObject
         shouldTriggerSensors: false,
       );
 
-    if (damageInPlayer && !destroy) {
-      if (position.overlaps(gameRef.player.rectCollision)) {
-        gameRef.player.receiveDamage(damage, id);
-        destroy = true;
-      }
+    if (damageInPlayer &&
+        !destroy &&
+        position.overlaps(gameRef.player.rectCollision)) {
+      gameRef.player.receiveDamage(damage, id);
+      destroy = true;
     } else {
       gameRef
           .attackables()
