@@ -10,6 +10,7 @@ import 'package:bonfire/util/interval_tick.dart';
 import 'package:flame/animation.dart' as FlameAnimation;
 import 'package:flame/position.dart';
 import 'package:flutter/widgets.dart';
+import 'package:bonfire/util/mixins/attackable.dart';
 
 class FlyingAttackAngleObject extends AnimatedObject
     with ObjectCollision, Lighting {
@@ -27,6 +28,7 @@ class FlyingAttackAngleObject extends AnimatedObject
   final bool collisionOnlyVisibleObjects;
   final VoidCallback destroyedObject;
   final LightingConfig lightingConfig;
+  final Attackable attacker;
 
   double _cosAngle;
   double _senAngle;
@@ -40,6 +42,7 @@ class FlyingAttackAngleObject extends AnimatedObject
     @required this.radAngle,
     @required this.width,
     @required this.height,
+    @required this.attacker,
     this.id,
     this.destroyAnimation,
     this.speed = 150,
@@ -121,7 +124,9 @@ class FlyingAttackAngleObject extends AnimatedObject
       gameRef
           .attackables()
           .where((a) =>
-              !a.isAttackablePlayer && a.rectAttackable().overlaps(position))
+              !a.isAttackablePlayer &&
+              a != attacker &&
+              a.rectAttackable().overlaps(position))
           .forEach((enemy) {
         enemy.receiveDamage(damage, id);
         destroy = true;
