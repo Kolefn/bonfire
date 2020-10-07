@@ -13,7 +13,7 @@ class RotationEnemy extends Enemy {
   FlameAnimation.Animation animation;
 
   /// Variable that represents the speed of the enemy.
-  final double speed;
+  double speed;
   double currentRadAngle;
 
   RotationEnemy({
