@@ -147,6 +147,10 @@ class Player extends GameComponent
     _isDead = true;
   }
 
+  void resurrect() {
+    _isDead = false;
+  }
+
   bool get isDead => _isDead;
 
   void addLife(double life) {
