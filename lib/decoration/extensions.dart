@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:bonfire/decoration/decoration.dart';
 import 'package:bonfire/player/player.dart';
 import 'package:bonfire/util/direction.dart';
+import 'package:bonfire/enemy/enemy.dart';
 
 extension GameDecorationExtensions on GameDecoration {
   void seePlayer({
@@ -30,6 +31,41 @@ extension GameDecorationExtensions on GameDecoration {
 
     if (fieldOfVision.overlaps(player.position)) {
       if (observed != null) observed(player);
+    } else {
+      if (notObserved != null) notObserved();
+    }
+  }
+
+  void seeEnemy({
+    Function(List<Enemy>) observed,
+    Function() notObserved,
+    double radiusVision = 32,
+  }) {
+    if (this.position == null) return;
+
+    var enemiesInLife = this.gameRef.visibleEnemies();
+    if (enemiesInLife.isEmpty) {
+      if (notObserved != null) notObserved();
+      return;
+    }
+
+    double visionWidth = radiusVision * 2;
+    double visionHeight = radiusVision * 2;
+
+    Rect fieldOfVision = Rect.fromLTWH(
+      this.position.center.dx - radiusVision,
+      this.position.center.dy - radiusVision,
+      visionWidth,
+      visionHeight,
+    );
+
+    List<Enemy> enemiesObserved = enemiesInLife
+        .where((enemy) =>
+            enemy.position != null && fieldOfVision.overlaps(enemy.position))
+        .toList();
+
+    if (enemiesObserved.isNotEmpty) {
+      if (observed != null) observed(enemiesObserved);
     } else {
       if (notObserved != null) notObserved();
     }
