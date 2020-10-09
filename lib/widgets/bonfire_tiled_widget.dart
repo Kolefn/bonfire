@@ -30,6 +30,7 @@ class BonfireTiledWidget extends StatefulWidget {
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
   final Duration durationShowAnimation;
   final GameColorFilter colorFilter;
+  final bool loadGameOnUpdate;
 
   const BonfireTiledWidget({
     Key key,
@@ -52,6 +53,7 @@ class BonfireTiledWidget extends StatefulWidget {
     this.transitionBuilder = AnimatedSwitcher.defaultTransitionBuilder,
     this.durationShowAnimation,
     this.colorFilter,
+    this.loadGameOnUpdate = false,
   }) : super(key: key);
   @override
   _BonfireTiledWidgetState createState() => _BonfireTiledWidgetState();
@@ -74,6 +76,9 @@ class _BonfireTiledWidgetState extends State<BonfireTiledWidget>
 
         value.components.forEach((d) => _game.addGameComponent(d));
       });
+    }
+    if (widget.loadGameOnUpdate) {
+      _loadGame();
     }
     super.didUpdateWidget(oldWidget);
   }
