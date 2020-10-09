@@ -51,6 +51,14 @@ mixin ObjectCollision on GameComponent {
     );
     if (collisionDecorations != null) return true;
 
+    final collisionEnemies =
+        (onlyVisible ? gameRef?.visibleEnemies() : gameRef?.enemies())
+            .firstWhere(
+      (i) => !i.isDead && i != this && i.detectCollision(rectCollisions),
+      orElse: () => null,
+    );
+    if (collisionEnemies != null) return true;
+
     return false;
   }
 
