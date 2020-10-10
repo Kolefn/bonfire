@@ -30,7 +30,6 @@ class RotationPlayer extends Player {
             life: life,
             collision: collision) {
     this.animation = animIdle;
-  }{
     _currentMoveRadAngle = currentRadAngle;
   }
 
@@ -44,7 +43,8 @@ class RotationPlayer extends Player {
     } else {
       this.animation = animIdle;
     }
-    _currentMoveRadAngle += (currentRadAngle - _currentMoveRadAngle) * event.intensity;
+    _currentMoveRadAngle +=
+        (currentRadAngle - _currentMoveRadAngle) * event.intensity;
     super.joystickChangeDirectional(event);
   }
 
