@@ -10,7 +10,7 @@ class RotationPlayer extends Player {
   final FlameAnimation.Animation animRun;
   double speed;
   double currentRadAngle;
-  bool _move = false;
+  double _currentMoveRadAngle;
   FlameAnimation.Animation animation;
 
   RotationPlayer({
@@ -30,6 +30,8 @@ class RotationPlayer extends Player {
             life: life,
             collision: collision) {
     this.animation = animIdle;
+  }{
+    _currentMoveRadAngle = currentRadAngle;
   }
 
   @override
@@ -38,19 +40,18 @@ class RotationPlayer extends Player {
         !isDead &&
         event.radAngle != 0.0) {
       currentRadAngle = event.radAngle;
-      _move = true;
       this.animation = animRun;
     } else {
-      _move = false;
       this.animation = animIdle;
     }
+    currentMoveRadAngle += (currentRadAngle - currentMoveRadAngle) * event.intensity;
     super.joystickChangeDirectional(event);
   }
 
   @override
   void update(double dt) {
-    if (_move && !isDead) {
-      moveFromAngle(speed, currentRadAngle);
+    if (speed > 0 && !isDead) {
+      moveFromAngle(speed, currentMoveRadAngle);
     }
     animation?.update(dt);
     super.update(dt);
