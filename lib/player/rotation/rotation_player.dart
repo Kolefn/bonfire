@@ -44,14 +44,14 @@ class RotationPlayer extends Player {
     } else {
       this.animation = animIdle;
     }
-    currentMoveRadAngle += (currentRadAngle - currentMoveRadAngle) * event.intensity;
+    _currentMoveRadAngle += (currentRadAngle - _currentMoveRadAngle) * event.intensity;
     super.joystickChangeDirectional(event);
   }
 
   @override
   void update(double dt) {
     if (speed > 0 && !isDead) {
-      moveFromAngle(speed, currentMoveRadAngle);
+      moveFromAngle(speed, _currentMoveRadAngle);
     }
     animation?.update(dt);
     super.update(dt);
