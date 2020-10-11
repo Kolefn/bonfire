@@ -18,6 +18,8 @@ import 'package:tiledjsonreader/tile_set/tile_set_item.dart';
 import 'package:tiledjsonreader/tile_set/tile_set_object.dart';
 import 'package:tiledjsonreader/tiledjsonreader.dart';
 
+import 'package:bonfire/base/game_component.dart';
+
 typedef ObjectBuilder = GameComponent Function(
     double x, double y, double width, double height);
 
@@ -57,6 +59,10 @@ class TiledWorldMap {
 
   void registerObject(String name, ObjectBuilder builder) {
     _objectsBuilder[name] = builder;
+  }
+
+  void addComponent(GameComponent component) {
+    _components.add(component);
   }
 
   Future<TiledWorldData> build() async {
