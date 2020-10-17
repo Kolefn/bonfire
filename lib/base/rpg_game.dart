@@ -25,7 +25,6 @@ import 'package:flutter/services.dart';
 
 class RPGGame extends CustomBaseGame with KeyboardEvents {
   final BuildContext context;
-  final Player player;
   final GameInterface interface;
   final MapGame map;
   final JoystickController joystickController;
@@ -37,6 +36,7 @@ class RPGGame extends CustomBaseGame with KeyboardEvents {
   final Color constructionModeColor;
   final Color lightingColorGame;
   final Color collisionAreaColor;
+  Player player;
 
   Iterable<Enemy> _enemies = List();
   Iterable<Enemy> _visibleEnemies = List();
