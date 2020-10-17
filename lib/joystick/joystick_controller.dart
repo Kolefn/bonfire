@@ -71,6 +71,10 @@ abstract class JoystickController extends Component
     _observers.add(listener);
   }
 
+  void removeObserver(JoystickListener listener) {
+    _observers.remove(listener);
+  }
+
   @override
   void render(Canvas c) {}
 
