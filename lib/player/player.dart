@@ -160,6 +160,7 @@ class Player extends GameComponent
     }
   }
 
+  @override
   Rect get rectCollision => getRectCollision(position);
 
   @override
