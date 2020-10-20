@@ -183,7 +183,7 @@ class RPGGame extends CustomBaseGame with KeyboardEvents {
     _visibleSensors =
         _visibleComponents.where((element) => (element is Sensor)).cast();
     _attackables =
-        _visibleComponents.where((element) => (element is Attackable)).cast();
+        components.where((element) => (element is Attackable)).cast();
 
     if (lightingColorGame != null) {
       _visibleLights = components.where((element) {
